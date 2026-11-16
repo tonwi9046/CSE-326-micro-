@@ -1,0 +1,31 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+    name db 'Name    : Your Name', 13, 10, '$'
+    id   db 'ID      : 0000000', 13, 10, '$'
+    course db 'Course  : CSE 326 Sessional', 13, 10, '$'
+
+.CODE
+MAIN PROC
+
+    MOV AX, @DATA       ; Load data segment address
+    MOV DS, AX          ; Initialize DS register
+
+    LEA DX, name        ; Load name string address
+    MOV AH, 09H         ; DOS print function
+    INT 21H             ; Display name
+
+    LEA DX, id          ; Load ID string address
+    MOV AH, 09H         ; DOS print function
+    INT 21H             ; Display ID
+
+    LEA DX, course      ; Load course string address
+    MOV AH, 09H         ; DOS print function
+    INT 21H             ; Display course
+
+    MOV AH, 4CH         ; DOS terminate function
+    INT 21H             ; End program
+
+MAIN ENDP
+END MAIN
